@@ -1,7 +1,7 @@
 // I'm a comment!
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 // pragma solidity ^0.8.0;
 // pragma solidity >=0.8.0 <0.9.0;
@@ -27,7 +27,10 @@ contract SimpleStorage {
     }
 
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
-        listOfPeople.push(Person(_favoriteNumber, _name));
+        // listOfPeople.push(Person(_favoriteNumber, _name))
+        listOfPeople.push(
+            Person({favoriteNumber: _favoriteNumber, name: _name})
+        );
         nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 }
