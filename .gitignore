@@ -2,6 +2,7 @@
 cache/
 out/
 Notes/
+zkout/
 
 # Ignores development broadcast logs
 !/broadcast
@@ -17,4 +18,6 @@ docs/
 # MyNotes
 notes.txt
 notes.md
+
+anvil-zksync.log
 
