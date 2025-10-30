@@ -16,14 +16,3 @@ contract DeploySimpleStorage is Script {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
