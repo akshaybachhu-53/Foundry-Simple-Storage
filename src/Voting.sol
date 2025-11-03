@@ -31,7 +31,8 @@ contract Voting {
         _onlyAdmin();
         _;
     }
-    function _onlyAdmin() internal view{
+
+    function _onlyAdmin() internal view {
         require(msg.sender == ADMIN, "Only Admin");
     }
 
@@ -40,16 +41,14 @@ contract Voting {
         _;
     }
 
-    function _votingActive() internal view{
+    function _votingActive() internal view {
         require(votingOpen, "Voting closed");
     }
+
     // --- Core Functions ---
     function addCandidate(string calldata _name) external onlyAdmin {
         require(bytes(_name).length > 0, "Name required");
-        candidates.push(Candidate({
-            name: _name,
-            voteCount: 0
-        }));
+        candidates.push(Candidate({name: _name, voteCount: 0}));
         emit CandidateAdded(_name);
     }
 
@@ -82,23 +81,13 @@ contract Voting {
         return totalVoteCount;
     }
 
-    function votesOf(uint256 candidateIndex)
-        external
-        view
-        onlyAdmin
-        returns (uint256)
-    {
+    function votesOf(uint256 candidateIndex) external view onlyAdmin returns (uint256) {
         require(candidateIndex < candidates.length, "Invalid index");
         require(!votingOpen, "Count after voting closed");
         return candidates[candidateIndex].voteCount;
     }
 
-    function getWinner()
-        external
-        view
-        onlyAdmin
-        returns (string memory winnerName)
-    {
+    function getWinner() external view onlyAdmin returns (string memory winnerName) {
         require(!votingOpen, "Count after voting closed");
         uint256 maxVotes;
         for (uint256 i = 0; i < candidates.length; i++) {
